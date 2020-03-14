@@ -1,0 +1,36 @@
+{
+  "books": {
+    "book": [
+      {
+        "@id": "1",
+        "name": "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "author": "Ashlee Vance",
+        "isbn": "9780062301253",
+        "bn": "",
+        "publisher": "HarperCollins Publishers",
+        "publishdate": "01/24/2017",
+        "pages": "416"
+      },
+      {
+        "@id": "2",
+        "name": "A Brief History of Time: From the Big Bang to Black Holes",
+        "author": "Stephen Hawking",
+        "isbn": "9780553380163",
+        "bn": "",
+        "publisher": "Random House Publishing Group",
+        "publishdate": "09/28/1998",
+        "pages": "224"
+      },
+      {
+        "@id": "3",
+        "name": "1066 Turned Upside Down",
+        "author": ["Joanna Courtney","Hellen Hollick","Richard Dee","Alison Morton"],
+        "isbn": "",
+        "bn": "2940156857791",
+        "publisher": "Matador Publishing Ltd",
+        "publishdate": "07/29/2016",
+        "pages": ""
+      }
+    ]
+  }
+}
