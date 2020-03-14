@@ -1,0 +1,125 @@
+---
+title: "Data607-Week07-Working with XML and JSON in R"
+author: "Vinayak Kamath"
+date: "3/14/2020"
+output:
+  html_document:
+    highlight: pygments
+    theme: cerulean
+    toc: TRUE
+    toc_depth: 4    
+    toc_float: 
+      collapsed: true
+      smooth_scroll: true
+      number_sections: true    
+  pdf_document: default
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(XML)
+#install.packages(R2HTML)
+library(R2HTML)
+library(jsonlite)
+library(RCurl)
+library(DT)
+```
+
+## Working with XML and JSON in R
+
+### Books Selected
+
+I have picked the below three books (*at random*) from the Barnes & Nobles website:
+
+1. Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future ; by Ashlee Vance
+2. A Brief History of Time: From the Big Bang to Black Holes ; by Stephen Hawking
+3. 1066 Turned Upside Down; by Joanna Courtney / Hellen Hollick / Richard Dee / Alison Morton
+
+
+![Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future](./pictures/Capture_ElonMusk.png)![A Brief History of Time: From the Big Bang to Black Holes](./pictures/Capture_StephenHawking.png)![1066 Turned Upside Down](./pictures/Capture_1066.png)
+
+--------------------------------------------------------------------------------
+
+\clearpage  
+
+### File Generation
+
+Have manually created the below three files "by hand" to capture the mentioned key 
+information/attributes:
+
+[books.html](https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.html)  
+[books.json](https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.json)  
+[books.xml](https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.xml)  
+ 
+1. Name or Title of the book,
+2. Author(s) of the book,
+3. ISBN and BN Identifiers of the book, 
+4. the publishing house, 
+5. date of publishing, and
+6. the number of pages in the boook.
+
+
+--------------------------------------------------------------------------------
+
+\clearpage  
+
+### R Data Frames
+
+We now load the information from each of the three files into separate R data 
+frames and compare the structures: 
+
+#### HTML File Handling:
+
+```{r}
+theHtmlUrl <- "https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.html"
+HtmlUrldata <- getURL(theHtmlUrl)
+html.data <- readHTMLTable(HtmlUrldata, header = TRUE
+                           , stringsAsFactors = FALSE, )
+html.df <-  as.data.frame(html.data)
+
+datatable(html.df)
+```
+
+
+#### JSON File Handling:
+
+```{r}
+theJsonUrl <- "https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.json"
+JsonUrldata <- getURL(theJsonUrl)
+json.data <- fromJSON(JsonUrldata)
+json.df <- data.frame(json.data$`books`)
+
+datatable(json.df)
+```
+
+
+#### XML File Handling:
+
+```{r}
+theXmlUrl <- "https://raw.githubusercontent.com/kamathvk1982/Data607-Week07/master/books.xml"
+XmlUrlData <- getURL(theXmlUrl)
+xml.data <- xmlParse(XmlUrlData)
+
+xml.root <- xmlRoot(xml.data)
+
+xml.df <- data.frame(t(xmlSApply(xml.root, function(x) xmlSApply(x, xmlValue))), row.names = NULL)
+datatable(xml.df)  
+```
+
+--------------------------------------------------------------------------------
+
+\clearpage  
+
+
+### Comments
+
+Based on above we can see the data structures looks very similar. For the HTML file 
+we can see the column names came with addtional *NULL.* value in it. We may need to 
+diuring actual processing see how the data types handling would hold. 
+
+--------------------------------------------------------------------------------
+
+
+\clearpage  
+  
