@@ -13,7 +13,6 @@
          <publishDate>01/24/2017</publishDate>
          <pages>416</pages>
       </book>
-
       <book>
          <id>2</id>
          <name>A Brief History of Time: From the Big Bang to Black Holes</name>
@@ -26,7 +25,6 @@
          <publishDate>09/28/1998</publishDate>
          <pages>224</pages>
       </book>
-
       <book>
          <id>3</id>
          <name>1066 Turned Upside Down</name>
