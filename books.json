@@ -1,6 +1,5 @@
 {
-  "books": {
-    "book": [
+  "books": [
       {
         "id": "1",
         "name": "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
@@ -31,6 +30,5 @@
         "publishdate": "07/29/2016",
         "pages": ""
       }
-    ]
-  }
+  ]
 }
